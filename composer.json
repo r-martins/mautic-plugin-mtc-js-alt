@@ -1,0 +1,28 @@
+{
+    "name": "r-martins/mautic-plugin-mtc-js-alt",
+    "description": "Mautic plugin: optional alternate public URL (filename) for the tracking script, same output as mtc.js. Configured under Settings → Configuration → Tracking settings.",
+    "type": "mautic-plugin",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "mautic",
+        "mautic-plugin",
+        "tracking",
+        "mtc.js",
+        "analytics"
+    ],
+    "require": {
+        "php": ">=8.2",
+        "mautic/core-lib": "^7.0"
+    },
+    "extra": {
+        "install-directory-name": "MtcJsAlternateBundle"
+    },
+    "autoload": {
+        "psr-4": {
+            "MauticPlugin\\MtcJsAlternateBundle\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
