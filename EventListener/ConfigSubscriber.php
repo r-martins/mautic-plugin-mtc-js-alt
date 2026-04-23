@@ -40,7 +40,8 @@ class ConfigSubscriber implements EventSubscriberInterface
         $tracking = $forms['trackingconfig'];
         $default    = $this->coreParametersHelper->get('alternate_mtc_js_filename');
         $tracking['parameters']['alternate_mtc_js_filename'] = null === $default ? '' : $default;
-        $tracking['formTheme']                                 = '@MtcJsAlternateBundle/FormTheme/Config/_config_trackingconfig_widget.html.twig';
+        // Twig paths for plugins use the short name (see TwigExtension / container: addPath(..., 'MtcJsAlternate')).
+        $tracking['formTheme']                                 = '@MtcJsAlternate/FormTheme/Config/_config_trackingconfig_widget.html.twig';
         $event->addForm($tracking);
     }
 
