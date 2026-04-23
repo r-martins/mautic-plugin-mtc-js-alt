@@ -33,14 +33,15 @@ class ConfigSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $default = $this->coreParametersHelper->get('alternate_mtc_js_filename');
-        if (null === $default) {
-            $default = '';
-        }
-
-        $forms['trackingconfig']['parameters']['alternate_mtc_js_filename'] = $default;
-        // Core template only whitelists known fields; use our copy that also renders alternate_mtc_js_filename.
-        $forms['trackingconfig']['formTheme'] = '@MtcJsAlternateBundle/FormTheme/Config/_config_trackingconfig_widget.html.twig';
+        // Must use addForm(), not only mutate getForms(): ConfigController passes
+        // $event->getFormThemes() to Twig; themes are appended only inside addForm().
+        // Re-adding trackingconfig stacks our theme after PageBundle's so our
+        // _config_trackingconfig_widget block wins.
+        $tracking = $forms['trackingconfig'];
+        $default    = $this->coreParametersHelper->get('alternate_mtc_js_filename');
+        $tracking['parameters']['alternate_mtc_js_filename'] = null === $default ? '' : $default;
+        $tracking['formTheme']                                 = '@MtcJsAlternateBundle/FormTheme/Config/_config_trackingconfig_widget.html.twig';
+        $event->addForm($tracking);
     }
 
     public function onConfigPreSave(ConfigEvent $event): void
