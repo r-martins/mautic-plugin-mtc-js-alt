@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     'name'        => 'MtcJsAlternate',
     'description' => 'URL alternativa (outro nome de arquivo) para o script de rastreamento, equivalente a mtc.js.',
-    'version'     => '1.0.0',
+    'version'     => '1.0.1',
     'author'      => 'MTC / PB Integrações',
     'services'    => [
         'events'   => [],

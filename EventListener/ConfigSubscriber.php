@@ -39,6 +39,8 @@ class ConfigSubscriber implements EventSubscriberInterface
         }
 
         $forms['trackingconfig']['parameters']['alternate_mtc_js_filename'] = $default;
+        // Core template only whitelists known fields; use our copy that also renders alternate_mtc_js_filename.
+        $forms['trackingconfig']['formTheme'] = '@MtcJsAlternateBundle/FormTheme/Config/_config_trackingconfig_widget.html.twig';
     }
 
     public function onConfigPreSave(ConfigEvent $event): void
